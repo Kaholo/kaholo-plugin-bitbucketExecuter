@@ -4,7 +4,7 @@
   "exposeRoute": false,
   "execProgram": "node",
   "main": "app.js",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "imgUrl": "logo.png",
   "methods": [
     {
@@ -26,7 +26,6 @@
           "viewName": "repo slug",
           "type": "string"
         }
-
       ],
       "actionString": "curl -u AUTH -X GET https://api.bitbucket.org/2.0/repositories/USERNAME/REPOSITORY_SLUG/pipelines/"
     },
@@ -49,7 +48,6 @@
           "viewName": "repo slug",
           "type": "string"
         }
-
       ],
       "actionString": "curl -u AUTH -X GET https://api.bitbucket.org/2.0/repositories/USERNAME/REPOSITORY_SLUG/downloads/"
     },
@@ -77,9 +75,9 @@
           "viewName": "file path",
           "type": "string"
         }
-
       ],
       "actionString": "curl -s -u AUTH -X POST https://api.bitbucket.org/2.0/repositories/USERNAME/REPOSITORY_SLUG/downloads/ -F files=FILE_PATH"
     }
-  ]
+  ],
+  "category": "SOURCE CONTROL"
 }
