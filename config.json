@@ -79,8 +79,7 @@
             "throwIfDoesntExist": true
           }
         }
-      ],
-      "actionString": "curl -s -u AUTH -X POST https://api.bitbucket.org/2.0/repositories/USERNAME/REPOSITORY_SLUG/downloads/ -F files=FILE_PATH"
+      ]
     }
   ],
   "category": "SOURCE CONTROL"
