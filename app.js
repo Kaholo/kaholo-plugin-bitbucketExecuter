@@ -1,29 +1,55 @@
-const { exec } = require("child_process");
+const kaholoPluginLibrary = require("@kaholo/plugin-library");
+const FormData = require("form-data");
 
-const executeActionString = (action) => new Promise((resolve, reject) => {
-  let { actionString } = action.method;
-  for (let i = 0; i < action.method.params.length; i += 1) {
-    const param = action.method.params[i].name;
-    if (Reflect.has(action.params, param)) {
-      actionString = actionString.replace(param, action.params[param]);
-    } else {
-      actionString = actionString.replace(param, "");
-    }
-  }
+const { createReadStream } = require("fs");
+const { basename } = require("path");
+const {
+  injectBitbucketClient,
+} = require("./helpers");
 
-  exec(actionString, (error, stdout, stderr) => {
-    if (error) {
-      reject(error);
-    }
-    if (stderr) {
-      console.info(stderr);
-    }
-    resolve(stdout);
+async function getPipelines(client, params) {
+  const {
+    workspace,
+    repoSlug,
+  } = params;
+
+  return client.repositories.listPipelines({
+    workspace,
+    repo_slug: repoSlug,
   });
-});
+}
 
-module.exports = {
-  GET_PIPELINES: executeActionString,
-  GET_DOWNLOAD_LINKS: executeActionString,
-  UPLOAD_ARTIFACT: executeActionString,
-};
+async function getDownloadLinks(client, params) {
+  const {
+    workspace,
+    repoSlug,
+  } = params;
+
+  return client.repositories.listDownloads({
+    workspace,
+    repo_slug: repoSlug,
+  });
+}
+
+async function createDownload(client, params) {
+  const {
+    workspace,
+    repoSlug,
+    filePath,
+  } = params;
+
+  const formData = new FormData();
+  formData.append(basename(filePath), createReadStream(filePath));
+
+  return client.repositories.createDownload({
+    _body: formData,
+    workspace,
+    repo_slug: repoSlug,
+  });
+}
+
+module.exports = kaholoPluginLibrary.bootstrap({
+  getPipelines: injectBitbucketClient(getPipelines),
+  getDownloadLinks: injectBitbucketClient(getDownloadLinks),
+  createDownload: injectBitbucketClient(createDownload),
+});

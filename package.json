@@ -13,5 +13,12 @@
     "eslint": "^8.35.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5"
+  },
+  "dependencies": {
+    "@kaholo/plugin-library": "github:Kaholo/kaholo-plugin-library#6d52642cf32b415dfba838808b9e48767a874210",
+    "axios": "^1.3.4",
+    "bitbucket": "^2.10.0",
+    "form-data": "^4.0.0",
+    "url-join": "^5.0.0"
   }
 }
