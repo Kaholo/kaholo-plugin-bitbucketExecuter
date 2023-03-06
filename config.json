@@ -10,12 +10,6 @@
     "authId": "bitbucketAccount",
     "params": [
       {
-        "name": "username",
-        "viewName": "Username",
-        "type": "string",
-        "required": true
-      },
-      {
         "name": "accessToken",
         "viewName": "Access Token",
         "type": "vault",

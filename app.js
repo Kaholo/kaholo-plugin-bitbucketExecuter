@@ -2,7 +2,6 @@ const kaholoPluginLibrary = require("@kaholo/plugin-library");
 const FormData = require("form-data");
 
 const { createReadStream } = require("fs");
-const { basename } = require("path");
 const {
   injectBitbucketClient,
 } = require("./helpers");
@@ -37,13 +36,14 @@ async function createDownload(client, params) {
     repoSlug,
     filePath: filePathInfo,
   } = params;
+
   const filePath = filePathInfo.absolutePath;
   if (filePathInfo.type !== "file") {
     throw new Error(`Invalid file type: "${filePathInfo.type}"`);
   }
 
   const formData = new FormData();
-  formData.append(basename(filePath), createReadStream(filePath));
+  formData.append("files", createReadStream(filePath));
 
   return client.repositories.createDownload({
     _body: formData,
