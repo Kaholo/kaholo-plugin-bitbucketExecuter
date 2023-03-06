@@ -35,8 +35,12 @@ async function createDownload(client, params) {
   const {
     workspace,
     repoSlug,
-    filePath,
+    filePath: filePathInfo,
   } = params;
+  const filePath = filePathInfo.absolutePath;
+  if (filePath.type !== "file") {
+    throw new Error(`Invalid file type: "${filePath.type}"`);
+  }
 
   const formData = new FormData();
   formData.append(basename(filePath), createReadStream(filePath));
