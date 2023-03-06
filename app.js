@@ -38,8 +38,8 @@ async function createDownload(client, params) {
     filePath: filePathInfo,
   } = params;
   const filePath = filePathInfo.absolutePath;
-  if (filePath.type !== "file") {
-    throw new Error(`Invalid file type: "${filePath.type}"`);
+  if (filePathInfo.type !== "file") {
+    throw new Error(`Invalid file type: "${filePathInfo.type}"`);
   }
 
   const formData = new FormData();
