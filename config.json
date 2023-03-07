@@ -1,17 +1,35 @@
 {
   "name": "Bitbucket",
+  "viewName": "Bitbucket",
   "type": "executer",
-  "exposeRoute": false,
   "execProgram": "node",
   "main": "app.js",
   "version": "1.2.2",
   "imgUrl": "logo.png",
+  "description": "Manage Bitbucket Pipelines and Downloads",
+  "category": "Source Control",
+  "keywords": [
+    "code",
+    "developer",
+    "repository",
+    "versioning",
+    "cloud",
+    "source",
+    "control",
+    "branch",
+    "atlassian",
+    "push",
+    "pull",
+    "clone",
+    "merge",
+    "bitbucket"
+  ],
   "auth": {
     "authId": "bitbucketAccount",
     "params": [
       {
         "name": "accessToken",
-        "viewName": "Access Token",
+        "viewName": "Repository Access Token",
         "type": "vault",
         "required": true
       }
@@ -23,14 +41,20 @@
       "viewName": "Get Pipelines",
       "params": [
         {
-          "name": "repoSlug",
-          "viewName": "Repository Slug",
-          "type": "string"
-        },
-        {
           "name": "workspace",
           "viewName": "Workspace",
-          "type": "string"
+          "type": "string",
+          "description": "The workspace of the repository",
+          "placeholder": "ourworkspace",
+          "required": true
+        },
+        {
+          "name": "repoSlug",
+          "viewName": "Repository",
+          "type": "string",
+          "description": "The name of the repository (slug form only)",
+          "placeholder": "nedzlas-repo",
+          "required": true
         }
       ]
     },
@@ -39,14 +63,20 @@
       "viewName": "Get Download Links",
       "params": [
         {
-          "name": "repoSlug",
-          "viewName": "Repository Slug",
-          "type": "string"
-        },
-        {
           "name": "workspace",
           "viewName": "Workspace",
-          "type": "string"
+          "type": "string",
+          "description": "The workspace of the repository",
+          "placeholder": "ourworkspace",
+          "required": true
+        },
+        {
+          "name": "repoSlug",
+          "viewName": "Repository",
+          "type": "string",
+          "description": "The name of the repository (slug form only)",
+          "placeholder": "nedzlas-repo",
+          "required": true
         }
       ]
     },
@@ -55,14 +85,20 @@
       "viewName": "Create Download Artifact",
       "params": [
         {
-          "name": "repoSlug",
-          "viewName": "Repository Slug",
-          "type": "string"
-        },
-        {
           "name": "workspace",
           "viewName": "Workspace",
-          "type": "string"
+          "type": "string",
+          "description": "The workspace of the repository",
+          "placeholder": "ourworkspace",
+          "required": true
+        },
+        {
+          "name": "repoSlug",
+          "viewName": "Repository",
+          "type": "string",
+          "description": "The name of the repository (slug form only)",
+          "placeholder": "nedzlas-repo",
+          "required": true
         },
         {
           "name": "filePath",
@@ -71,10 +107,12 @@
           "parserType": "filePath",
           "parserOptions": {
             "throwIfDoesntExist": true
-          }
+          },
+          "description": "Path to the file on the Kaholo agent to upload",
+          "placeholder": "nedzlas-repo/target/nedzla-v1.0.0.zip",
+          "required": true
         }
       ]
     }
-  ],
-  "category": "SOURCE CONTROL"
+  ]
 }
