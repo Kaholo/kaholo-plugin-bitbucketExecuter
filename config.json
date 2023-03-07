@@ -1,0 +1,80 @@
+{
+  "name": "Bitbucket",
+  "type": "executer",
+  "exposeRoute": false,
+  "execProgram": "node",
+  "main": "app.js",
+  "version": "1.2.2",
+  "imgUrl": "logo.png",
+  "auth": {
+    "authId": "bitbucketAccount",
+    "params": [
+      {
+        "name": "accessToken",
+        "viewName": "Access Token",
+        "type": "vault",
+        "required": true
+      }
+    ]
+  },
+  "methods": [
+    {
+      "name": "getPipelines",
+      "viewName": "Get Pipelines",
+      "params": [
+        {
+          "name": "repoSlug",
+          "viewName": "Repository Slug",
+          "type": "string"
+        },
+        {
+          "name": "workspace",
+          "viewName": "Workspace",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "getDownloadLinks",
+      "viewName": "Get Download Links",
+      "params": [
+        {
+          "name": "repoSlug",
+          "viewName": "Repository Slug",
+          "type": "string"
+        },
+        {
+          "name": "workspace",
+          "viewName": "Workspace",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "createDownload",
+      "viewName": "Create Download Artifact",
+      "params": [
+        {
+          "name": "repoSlug",
+          "viewName": "Repository Slug",
+          "type": "string"
+        },
+        {
+          "name": "workspace",
+          "viewName": "Workspace",
+          "type": "string"
+        },
+        {
+          "name": "filePath",
+          "viewName": "File Path",
+          "type": "string",
+          "parserType": "filePath",
+          "parserOptions": {
+            "throwIfDoesntExist": true
+          }
+        }
+      ]
+    }
+  ],
+  "category": "SOURCE CONTROL"
+}
