@@ -4,7 +4,7 @@
   "type": "executer",
   "execProgram": "node",
   "main": "app.js",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "imgUrl": "logo.png",
   "description": "Manage Bitbucket Pipelines and Downloads",
   "category": "Source Control",
