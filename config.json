@@ -1,0 +1,118 @@
+{
+  "name": "Bitbucket",
+  "viewName": "Bitbucket",
+  "type": "executer",
+  "execProgram": "node",
+  "main": "app.js",
+  "version": "1.3.0",
+  "imgUrl": "logo.png",
+  "description": "Manage Bitbucket Pipelines and Downloads",
+  "category": "Source Control",
+  "keywords": [
+    "code",
+    "developer",
+    "repository",
+    "versioning",
+    "cloud",
+    "source",
+    "control",
+    "branch",
+    "atlassian",
+    "push",
+    "pull",
+    "clone",
+    "merge",
+    "bitbucket"
+  ],
+  "auth": {
+    "authId": "bitbucketAccount",
+    "params": [
+      {
+        "name": "accessToken",
+        "viewName": "Repository Access Token",
+        "type": "vault",
+        "required": true
+      }
+    ]
+  },
+  "methods": [
+    {
+      "name": "getPipelines",
+      "viewName": "Get Pipelines",
+      "params": [
+        {
+          "name": "workspace",
+          "viewName": "Workspace",
+          "type": "string",
+          "description": "The workspace of the repository",
+          "placeholder": "ourworkspace",
+          "required": true
+        },
+        {
+          "name": "repoSlug",
+          "viewName": "Repository",
+          "type": "string",
+          "description": "The name of the repository (slug form only)",
+          "placeholder": "nedzlas-repo",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "getDownloadLinks",
+      "viewName": "Get Download Links",
+      "params": [
+        {
+          "name": "workspace",
+          "viewName": "Workspace",
+          "type": "string",
+          "description": "The workspace of the repository",
+          "placeholder": "ourworkspace",
+          "required": true
+        },
+        {
+          "name": "repoSlug",
+          "viewName": "Repository",
+          "type": "string",
+          "description": "The name of the repository (slug form only)",
+          "placeholder": "nedzlas-repo",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "createDownload",
+      "viewName": "Create Download Artifact",
+      "params": [
+        {
+          "name": "workspace",
+          "viewName": "Workspace",
+          "type": "string",
+          "description": "The workspace of the repository",
+          "placeholder": "ourworkspace",
+          "required": true
+        },
+        {
+          "name": "repoSlug",
+          "viewName": "Repository",
+          "type": "string",
+          "description": "The name of the repository (slug form only)",
+          "placeholder": "nedzlas-repo",
+          "required": true
+        },
+        {
+          "name": "filePath",
+          "viewName": "File Path",
+          "type": "string",
+          "parserType": "filePath",
+          "parserOptions": {
+            "throwIfDoesntExist": true
+          },
+          "description": "Path to the file on the Kaholo agent to upload",
+          "placeholder": "nedzlas-repo/target/nedzla-v1.0.0.zip",
+          "required": true
+        }
+      ]
+    }
+  ]
+}
